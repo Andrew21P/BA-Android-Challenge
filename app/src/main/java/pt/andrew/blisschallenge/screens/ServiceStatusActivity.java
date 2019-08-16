@@ -1,6 +1,8 @@
 package pt.andrew.blisschallenge.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +20,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ServiceStatusActivity extends AppCompatActivity {
+
+    private static final int SPLASHSCREEN_DURATION = 1150;
 
     @BindView(R.id.serviceHealthMainContainer)
     View _mainContainer;
@@ -44,8 +48,7 @@ public class ServiceStatusActivity extends AppCompatActivity {
                 _mainContainer.setVisibility(View.VISIBLE);
 
                 if (ValidationsHelper.isServiceHealthOk(response.body())) {
-                    _description.setText(getString(R.string.service_status, getString(R.string.service_ok)));
-                    _statusIcon.setImageResource(R.drawable.check_icon);
+                    setServiceOkLayout();
                 } else {
                     setServiceDownLayout();
                 }
@@ -63,5 +66,19 @@ public class ServiceStatusActivity extends AppCompatActivity {
     private void setServiceDownLayout() {
         _description.setText(getString(R.string.service_status, getString(R.string.service_down)));
         _statusIcon.setImageResource(R.drawable.fail_icon);
+    }
+
+    private void setServiceOkLayout() {
+        _description.setText(getString(R.string.service_status, getString(R.string.service_ok)));
+        _statusIcon.setImageResource(R.drawable.check_icon);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent questionsScreenActivity = new Intent(ServiceStatusActivity.this, QuestionsScreenActivity.class);
+                finish();
+                startActivity(questionsScreenActivity);
+            }
+        }, SPLASHSCREEN_DURATION);
     }
 }
