@@ -3,6 +3,7 @@
 
     <dimen name="text_body_size">14sp</dimen>
     <dimen name="horizontal_line_separator_height">2dp</dimen>
+    <dimen name="loader_size">50dp</dimen>
 
     <!-- ServiceStatusActivity -->
     <dimen name="service_health_logo_size">200dp</dimen>

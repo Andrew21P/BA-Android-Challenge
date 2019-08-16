@@ -19,6 +19,8 @@ import retrofit2.Response;
 
 public class ServiceStatusActivity extends AppCompatActivity {
 
+    @BindView(R.id.serviceHealthMainContainer)
+    View _mainContainer;
     @BindView(R.id.serviceHealthLoaderContainer)
     View _loader;
     @BindView(R.id.serviceHealthDescription)
@@ -39,6 +41,7 @@ public class ServiceStatusActivity extends AppCompatActivity {
             public void onResponse(Call<ServiceStatus> call, Response<ServiceStatus> response) {
 
                 _loader.setVisibility(View.GONE);
+                _mainContainer.setVisibility(View.VISIBLE);
 
                 if (ValidationsHelper.isServiceHealthOk(response.body())) {
                     _description.setText(getString(R.string.service_status, getString(R.string.service_ok)));
@@ -50,6 +53,8 @@ public class ServiceStatusActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServiceStatus> call, Throwable t) {
+                _loader.setVisibility(View.GONE);
+                _mainContainer.setVisibility(View.VISIBLE);
                 setServiceDownLayout();
             }
         });
