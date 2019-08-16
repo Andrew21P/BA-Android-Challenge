@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:launchMode="singleTask"
         android:name=".application.BlissChallengeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -32,14 +32,30 @@ public class ServiceStatusActivity extends AppCompatActivity {
     @BindView(R.id.serviceHealthStatusIcon)
     ImageView _statusIcon;
 
+    Handler _handler;
+    Runnable _runnable;
+    boolean _showOkLayout = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_health);
         ButterKnife.bind(this);
 
+        _handler = new Handler();
+        _runnable = new Runnable() {
+            @Override
+            public void run() {
+                _mainContainer.setVisibility(View.GONE);
+                Intent questionsScreenActivity = new Intent(ServiceStatusActivity.this, QuestionsScreenActivity.class);
+                startActivity(questionsScreenActivity);
+                finish();
+            }
+        };
+
         ServiceData serviceData = RetrofitInstance.getRetrofitServiceInstance().create(ServiceData.class);
         Call<ServiceStatus> statusCall = serviceData.getServiceStatus();
+
         statusCall.enqueue(new Callback<ServiceStatus>() {
             @Override
             public void onResponse(Call<ServiceStatus> call, Response<ServiceStatus> response) {
@@ -64,21 +80,30 @@ public class ServiceStatusActivity extends AppCompatActivity {
     }
 
     private void setServiceDownLayout() {
+        _showOkLayout = false;
         _description.setText(getString(R.string.service_status, getString(R.string.service_down)));
         _statusIcon.setImageResource(R.drawable.fail_icon);
     }
 
     private void setServiceOkLayout() {
+        _showOkLayout = true;
         _description.setText(getString(R.string.service_status, getString(R.string.service_ok)));
         _statusIcon.setImageResource(R.drawable.check_icon);
+        _handler.postDelayed(_runnable, SPLASHSCREEN_DURATION);
+    }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent questionsScreenActivity = new Intent(ServiceStatusActivity.this, QuestionsScreenActivity.class);
-                finish();
-                startActivity(questionsScreenActivity);
-            }
-        }, SPLASHSCREEN_DURATION);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        _handler.removeCallbacks(_runnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (_showOkLayout) {
+            _handler.postDelayed(_runnable, SPLASHSCREEN_DURATION);
+        }
     }
 }

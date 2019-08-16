@@ -3,4 +3,7 @@
     <string name="service_status">The Service is %s!</string>
     <string name="service_ok">OK</string>
     <string name="service_down">Down</string>
+    <string name="dialog_not_responding_title">Information</string>
+    <string name="dialog_not_responding_positive_button_text">Try Again</string>
+    <string name="dialog_not_responding_description">Sorry, our server is not responding</string>
 </resources>

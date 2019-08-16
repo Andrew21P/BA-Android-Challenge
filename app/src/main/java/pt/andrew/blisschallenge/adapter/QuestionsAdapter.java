@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import pt.andrew.blisschallenge.R;
+import pt.andrew.blisschallenge.helpers.DateHelper;
 import pt.andrew.blisschallenge.model.Question;
 
 /**
@@ -33,15 +34,17 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
 
         public final View questionView;
 
-        TextView txtTitle;
-        private ImageView coverImage;
+        private TextView questionTitle;
+        private TextView questionData;
+        private ImageView questionThumbnail;
 
         QuestionViewHolder(View itemView) {
             super(itemView);
             questionView = itemView;
 
-            txtTitle = questionView.findViewById(R.id.title);
-            coverImage = questionView.findViewById(R.id.coverImage);
+            questionTitle = questionView.findViewById(R.id.questionRowTitle);
+            questionData = questionView.findViewById(R.id.questionRowData);
+            questionThumbnail = questionView.findViewById(R.id.questionRowThumbnail);
         }
     }
 
@@ -53,20 +56,23 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     @Override
     public QuestionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.custom_row, parent, false);
+        View view = layoutInflater.inflate(R.layout.question_row, parent, false);
         return new QuestionViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(QuestionViewHolder holder, int position) {
-        holder.txtTitle.setText(_questionList.get(position).getTitle());
+        Question currentQuestion = _questionList.get(position);
+
+        holder.questionTitle.setText(currentQuestion.getQuestionTitle());
+        holder.questionData.setText(DateHelper.formatDate(currentQuestion.getQuestionPublishDate(), _context));
 
         Picasso.Builder builder = new Picasso.Builder(_context);
         builder.downloader(new OkHttp3Downloader(_context));
-        builder.build().load(_questionList.get(position).getThumbnailUrl())
-                .placeholder((R.drawable.ic_launcher_background))
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.coverImage);
+        builder.build().load(currentQuestion.getQuestionThumbnailUrl())
+                .placeholder((R.mipmap.ic_launcher))
+                .error(R.mipmap.ic_launcher)
+                .into(holder.questionThumbnail);
     }
 
 }
