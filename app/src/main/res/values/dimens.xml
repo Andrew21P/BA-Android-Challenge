@@ -15,4 +15,9 @@
     <dimen name="bliss_logo_width">120dp</dimen>
     <dimen name="bliss_logo_margin_top">15dp</dimen>
     <dimen name="bliss_logo_padding_top">50dp</dimen>
+
+    <!-- QuestionsScreenActivity -->
+    <dimen name="question_thumbnail_size">45dp</dimen>
+    <dimen name="question_margin">5dp</dimen>
+
 </resources>
