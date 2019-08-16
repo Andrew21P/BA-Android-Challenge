@@ -3,13 +3,13 @@ package pt.andrew.blisschallenge.screens;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
-import pt.andrew.blisschallenge.helpers.ValidationHelpers;
+import pt.andrew.blisschallenge.helpers.ValidationsHelper;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
 import pt.andrew.blisschallenge.network.entities.ServiceData;
@@ -21,8 +21,10 @@ public class ServiceStatusActivity extends AppCompatActivity {
 
     @BindView(R.id.serviceHealthLoaderContainer)
     View _loader;
-    @BindView(R.id.serviceHealthTitle)
-    TextView _title;
+    @BindView(R.id.serviceHealthDescription)
+    TextView _description;
+    @BindView(R.id.serviceHealthStatusIcon)
+    ImageView _statusIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +40,23 @@ public class ServiceStatusActivity extends AppCompatActivity {
 
                 _loader.setVisibility(View.GONE);
 
-                Toast.makeText(ServiceStatusActivity.this, "Service is OK!", Toast.LENGTH_SHORT).show();
-
-                if (ValidationHelpers.isServiceHealthOk(response.body())) {
-                    _title.setText("It's OK!");
+                if (ValidationsHelper.isServiceHealthOk(response.body())) {
+                    _description.setText(getString(R.string.service_status, getString(R.string.service_ok)));
+                    _statusIcon.setImageResource(R.drawable.check_icon);
                 } else {
-                    _title.setText("Service Down!");
+                    setServiceDownLayout();
                 }
             }
 
             @Override
             public void onFailure(Call<ServiceStatus> call, Throwable t) {
-                Toast.makeText(ServiceStatusActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-                _title.setText("Service Down!");
+                setServiceDownLayout();
             }
         });
+    }
 
-
+    private void setServiceDownLayout() {
+        _description.setText(getString(R.string.service_status, getString(R.string.service_down)));
+        _statusIcon.setImageResource(R.drawable.fail_icon);
     }
 }

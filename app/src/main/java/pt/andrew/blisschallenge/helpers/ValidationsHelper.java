@@ -5,7 +5,7 @@ import pt.andrew.blisschallenge.model.ServiceStatus;
 /**
  * Created by andrew.fernandes on 16/08/2019
  */
-public class ValidationHelpers {
+public class ValidationsHelper {
 
     //Service Response when health is OK
     private final static String STATUS_OK = "OK";
