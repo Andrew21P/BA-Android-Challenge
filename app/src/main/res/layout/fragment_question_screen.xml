@@ -8,26 +8,6 @@
     android:background="@color/colorBackground"
     tools:context=".screens.QuestionsScreenActivity">
 
-    <ImageView
-        android:id="@+id/questionsScreenBlissChallengeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/bliss_challenge_horizontal_padding"
-        android:paddingEnd="@dimen/bliss_challenge_horizontal_padding"
-        android:src="@drawable/bliss_challenge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/questionsScreenHorizontalSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/horizontal_line_separator_height"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreenBlissChallengeImage" />
-
     <RelativeLayout
         android:id="@+id/questionsScreenLoaderContainer"
         android:layout_width="@dimen/question_recycler_view_height"
@@ -38,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone">
 
         <ProgressBar
@@ -59,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
         <ImageView
@@ -110,7 +90,7 @@
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@android:color/transparent"
         app:queryHint="@string/search" />
 

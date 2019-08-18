@@ -13,11 +13,14 @@ import retrofit2.http.Query;
  */
 public interface ServiceData {
 
-    String QUESTION_LIMIT = "10";
+    public String QUESTION_LIMIT = "10";
 
     @GET("/health")
     Call<ServiceStatus> getServiceStatus();
 
     @GET("/questions?limit=" + QUESTION_LIMIT)
     Call<List<Question>> getQuestions(@Query("offset") int offset, @Query("filter") String filter);
+
+    @GET("/share")
+    Call<ServiceStatus> getShareResponse(@Query("destination_email") String email, @Query("content_url") String contentUrl);
 }

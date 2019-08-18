@@ -2,8 +2,10 @@
 <resources>
 
     <dimen name="text_body_size">14sp</dimen>
+    <dimen name="text_title_size">20sp</dimen>
     <dimen name="horizontal_line_separator_height">2dp</dimen>
     <dimen name="loader_size">50dp</dimen>
+    <dimen name="base_screen_frame_height">0dp</dimen>
 
     <!-- ServiceStatusActivity -->
     <dimen name="service_health_logo_size">200dp</dimen>
@@ -30,5 +32,11 @@
     <dimen name="question_row_separator_horizontal_height">0.5dp</dimen>
     <dimen name="question_row_separator_horizontal_margin">70dp</dimen>
     <dimen name="question_sub_title_bar_margin">10dp</dimen>
+
+    <!-- ShareScreenDialog -->
+    <dimen name="share_screen_button_margin">25dp</dimen>
+    <dimen name="share_screen_vertical_margin">10dp</dimen>
+    <dimen name="share_screen_width">300dp</dimen>
+    <dimen name="share_screen_height">150dp</dimen>
 
 </resources>

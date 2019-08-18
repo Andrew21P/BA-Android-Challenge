@@ -15,6 +15,7 @@ import pt.andrew.blisschallenge.helpers.ValidationsHelper;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
 import pt.andrew.blisschallenge.network.entities.ServiceData;
+import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +48,7 @@ public class ServiceStatusActivity extends AppCompatActivity {
             @Override
             public void run() {
                 _mainContainer.setVisibility(View.GONE);
-                Intent questionsScreenActivity = new Intent(ServiceStatusActivity.this, QuestionsScreenActivity.class);
+                Intent questionsScreenActivity = new Intent(ServiceStatusActivity.this, BaseScreenActivity.class);
                 startActivity(questionsScreenActivity);
                 finish();
             }

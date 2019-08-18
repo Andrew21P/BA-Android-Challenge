@@ -13,4 +13,8 @@ public class ValidationsHelper {
     public static boolean isServiceHealthOk(ServiceStatus response) {
         return response != null && response.getStatus() != null && response.getStatus().equals(STATUS_OK);
     }
+
+    public static boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 }

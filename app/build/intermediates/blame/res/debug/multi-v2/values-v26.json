@@ -6,12 +6,36 @@
                 {
                     "source": "C:\\Users\\andrew.fernandes\\.gradle\\caches\\transforms-2\\files-2.1\\85618b98f5e3856cfe9722ddaef5ac06\\res\\values-v26\\values-v26.xml",
                     "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,130,217,431,657,896",
+                        "startOffsets": "55,130,217,381,557,796",
                         "endLines": "2,3,7,11,15,16",
                         "endColumns": "74,86,12,12,12,92",
-                        "endOffsets": "125,212,426,652,891,984"
+                        "endOffsets": "125,212,376,552,791,884"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\andrew.fernandes\\Documents\\BA-Android-Challenge\\app\\src\\main\\res\\values-v26\\styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "11",
+                        "endColumns": "12",
+                        "endOffsets": "711"
+                    },
+                    "to": {
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "889",
+                        "endLines": "26",
+                        "endColumns": "12",
+                        "endOffsets": "1534"
                     }
                 }
             ]

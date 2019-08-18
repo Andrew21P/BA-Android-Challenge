@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/share_screen_width"
+    android:layout_height="@dimen/share_screen_height"
+    android:layout_gravity="center"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/shareScreenLoader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/share_screen_button_margin"
+        android:layout_marginBottom="@dimen/share_screen_button_margin"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/loader_size"
+            android:layout_height="@dimen/loader_size"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/shareScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/share_screen_vertical_margin"
+        android:layout_marginBottom="@dimen/share_screen_vertical_margin"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/share_results"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_title_size" />
+
+    <View
+        android:id="@+id/shareScreenHorizontalSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_line_separator_height"
+        android:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/shareScreenResume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/share_screen_vertical_margin"
+        android:fontFamily="@font/raleway"
+        android:textColor="@color/pureWhite"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/shareScreenEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/share_screen_vertical_margin"
+        android:layout_marginBottom="@dimen/share_screen_vertical_margin"
+        android:fontFamily="@font/raleway"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <LinearLayout
+        android:id="@+id/shareScreenButtonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/question_margin"
+        android:layout_marginTop="@dimen/share_screen_vertical_margin"
+        android:layout_marginBottom="@dimen/share_screen_vertical_margin"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/shareScreenOkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@string/service_ok"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_title_size"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/shareScreenCloseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/share_screen_button_margin"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@string/close"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_title_size" />
+
+        <TextView
+            android:id="@+id/shareScreenSendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/share_screen_button_margin"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@string/send"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_title_size" />
+
+    </LinearLayout>
+
+</LinearLayout>
