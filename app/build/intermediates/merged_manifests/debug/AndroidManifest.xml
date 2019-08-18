@@ -20,7 +20,6 @@
         android:launchMode="singleTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="pt.andrew.blisschallenge.screens.QuestionsScreenActivity"
