@@ -8,8 +8,11 @@
     <uses-sdk
         android:minSdkVersion="23"
         android:targetSdkVersion="28" />
+
     <!-- App Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="pt.andrew.blisschallenge.application.BlissChallengeApplication"

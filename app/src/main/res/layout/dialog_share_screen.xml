@@ -49,6 +49,7 @@
         android:layout_margin="@dimen/share_screen_vertical_margin"
         android:layout_marginTop="@dimen/share_screen_resume_margin_vertical"
         android:fontFamily="@font/raleway"
+        android:textAlignment="center"
         android:textColor="@color/colorDemiWhite"
         android:textSize="@dimen/text_title_size"
         android:visibility="gone" />

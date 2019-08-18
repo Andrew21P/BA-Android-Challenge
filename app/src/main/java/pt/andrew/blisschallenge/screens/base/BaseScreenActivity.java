@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
+import pt.andrew.blisschallenge.application.BlissChallengeApplication;
+import pt.andrew.blisschallenge.dialog.ShareScreenDialog;
 import pt.andrew.blisschallenge.screens.fragments.DetailScreenFragment;
 import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 
@@ -22,6 +26,10 @@ public class BaseScreenActivity extends AppCompatActivity {
 
     @BindView(R.id.baseScreenActivityFrameContainer)
     FrameLayout _baseFragmentContainer;
+    @BindView(R.id.baseNetworkErrorScreen)
+    View _networkErrorScreen;
+
+    private ShareScreenDialog _shareDialog;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -40,16 +48,36 @@ public class BaseScreenActivity extends AppCompatActivity {
         } else {
             startFromSplash();
         }
+
+        BlissChallengeApplication.getInstance().setCurrentActivity(BaseScreenActivity.this);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_screen);
+        ButterKnife.bind(this);
         onNewIntent(getIntent());
     }
 
     public  void startFromSplash() {
         getSupportFragmentManager().beginTransaction().add(R.id.baseScreenActivityFrameContainer, new QuestionScreenFragment()).commit();
+    }
+
+    public void showNetworkError() {
+        if (_shareDialog != null) {
+            _shareDialog.dismissDialog();
+        }
+
+        _networkErrorScreen.setVisibility(View.VISIBLE);
+        _networkErrorScreen.bringToFront();
+    }
+
+    public void hideNetworkError() {
+        _networkErrorScreen.setVisibility(View.GONE);
+    }
+
+    public void setShareDialog(ShareScreenDialog shareDialog) {
+        this._shareDialog = shareDialog;
     }
 }

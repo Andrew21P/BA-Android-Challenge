@@ -20,4 +20,6 @@
     <string name="back_to_list">Back to question list</string>
     <string name="results">Results:</string>
     <string name="votes">Votes: %d</string>
+    <string name="information">Information</string>
+    <string name="network_error">Sorry, we can\'t detect any Internet connection, please check your wifi or mobile data settings.</string>
 </resources>

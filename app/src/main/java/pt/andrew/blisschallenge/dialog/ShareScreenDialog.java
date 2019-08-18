@@ -62,6 +62,12 @@ public class ShareScreenDialog {
         loader.bringToFront();
     }
 
+    public void dismissDialog() {
+        if (_shareDialog != null) {
+            _shareDialog.dismiss();
+        }
+    }
+
     public void showResume(String resume) {
         View loader = _shareDialog.findViewById(R.id.shareScreenLoader);
         View okButton = _shareDialog.findViewById(R.id.shareScreenOkButton);

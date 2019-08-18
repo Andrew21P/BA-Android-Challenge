@@ -159,6 +159,10 @@ public class DetailScreenFragment extends Fragment {
             public void onClick(View v) {
                 _shareDialog = new ShareScreenDialog();
                 _shareDialog.initDialog(getContext());
+                BaseScreenActivity activity = (BaseScreenActivity) getActivity();
+                if (activity != null) {
+                    activity.setShareDialog(_shareDialog);
+                }
                 _shareDialog.showDialog(getString(R.string.share_question));
                 _shareDialog.setPositiveButton(new View.OnClickListener() {
                     @Override

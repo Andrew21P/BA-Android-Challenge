@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/colorBackground">
+
+    <LinearLayout
+        android:id="@+id/baseNetworkErrorScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/share_screen_vertical_margin"
+            android:layout_marginBottom="@dimen/share_screen_vertical_margin"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@string/information"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_title_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_line_separator_height"
+            android:layout_marginStart="@dimen/detail_separator_margin_horizontal"
+            android:layout_marginEnd="@dimen/detail_separator_margin_horizontal"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/share_screen_vertical_margin"
+            android:layout_marginTop="@dimen/share_screen_resume_margin_vertical"
+            android:fontFamily="@font/raleway"
+            android:text="@string/network_error"
+            android:textAlignment="center"
+            android:textColor="@color/colorDemiWhite"
+            android:textSize="@dimen/text_title_size" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/questionsScreenBlissChallengeImage"

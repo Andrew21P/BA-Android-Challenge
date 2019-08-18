@@ -35,6 +35,7 @@ import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
 import pt.andrew.blisschallenge.network.entities.ServiceData;
+import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -148,6 +149,10 @@ public class QuestionScreenFragment extends Fragment {
                 _searchView.clearFocus();
                 _shareDialog = new ShareScreenDialog();
                 _shareDialog.initDialog(getContext());
+                BaseScreenActivity activity = (BaseScreenActivity) getActivity();
+                if (activity != null) {
+                    activity.setShareDialog(_shareDialog);
+                }
                 _shareDialog.showDialog(getString(R.string.share_results));
                 _shareDialog.setPositiveButton(new View.OnClickListener() {
                     @Override
