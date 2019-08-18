@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
+    tools:context=".screens.QuestionsScreenActivity">
+
+    <ImageView
+        android:id="@+id/questionsScreenBlissChallengeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/bliss_challenge_horizontal_padding"
+        android:paddingEnd="@dimen/bliss_challenge_horizontal_padding"
+        android:src="@drawable/bliss_challenge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/questionsScreenHorizontalSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_line_separator_height"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsScreenBlissChallengeImage" />
+
+    <RelativeLayout
+        android:id="@+id/questionsScreenLoaderContainer"
+        android:layout_width="@dimen/question_recycler_view_height"
+        android:layout_height="@dimen/question_recycler_view_height"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/loader_size"
+            android:layout_height="@dimen/loader_size"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/questionsScreenEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_recycler_view_height"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/questionsScreenFailIcon"
+            android:layout_width="@dimen/service_health_logo_size"
+            android:layout_height="@dimen/service_health_logo_size"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/service_health_logo_margin"
+            android:padding="@dimen/service_health_logo_padding"
+            android:src="@drawable/fail_icon" />
+
+        <TextView
+            android:id="@+id/questionsScreenFailMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionsScreenFailIcon"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/service_health_description_margin"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@string/dialog_not_responding_description"
+            android:textAlignment="center"
+            android:textColor="@color/pureWhite"
+            android:textSize="@dimen/text_body_size" />
+
+        <TextView
+            android:id="@+id/questionsScreenTryAgainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionsScreenFailMessage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@string/dialog_not_responding_positive_button_text"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_body_size" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/questionsScreenRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_recycler_view_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsScreenHorizontalSeparator"
+        tools:visibility="gone" />
+
+</android.support.constraint.ConstraintLayout>

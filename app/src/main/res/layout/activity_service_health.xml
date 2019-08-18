@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.ServiceHealthActivity">
+    android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".screens.ServiceStatusActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/serviceHealthLoaderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/loader_size"
+            android:layout_height="@dimen/loader_size"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/serviceHealthMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/bliss_challenge_horizontal_padding"
+            android:paddingEnd="@dimen/bliss_challenge_horizontal_padding"
+            android:src="@drawable/bliss_challenge" />
+
+        <ImageView
+            android:id="@+id/serviceHealthStatusIcon"
+            android:layout_width="@dimen/service_health_logo_size"
+            android:layout_height="@dimen/service_health_logo_size"
+            android:layout_margin="@dimen/service_health_logo_margin"
+            android:padding="@dimen/service_health_logo_padding" />
+
+        <TextView
+            android:id="@+id/serviceHealthDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/service_health_description_margin"
+            android:fontFamily="@font/raleway_semibold"
+            android:textAlignment="center"
+            android:textColor="@color/pureWhite"
+            android:textSize="@dimen/text_body_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_line_separator_height"
+            android:layout_marginStart="@dimen/service_health_separator_horizontal_margin"
+            android:layout_marginEnd="@dimen/service_health_separator_horizontal_margin"
+            android:background="@color/colorPrimary" />
+
+        <ImageView
+            android:layout_width="@dimen/bliss_logo_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bliss_logo_margin_top"
+            android:paddingTop="@dimen/bliss_logo_padding_top"
+            android:src="@drawable/bliss_logo" />
+
+    </LinearLayout>
+
+</LinearLayout>
