@@ -12,6 +12,59 @@
     tools:context=".screens.fragments.DetailScreenFragment">
 
     <RelativeLayout
+        android:id="@+id/detailScreenEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_recycler_view_height"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/detailScreenFailIcon"
+            android:layout_width="@dimen/service_health_logo_size"
+            android:layout_height="@dimen/service_health_logo_size"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/service_health_logo_margin"
+            android:padding="@dimen/service_health_logo_padding"
+            android:src="@drawable/fail_icon" />
+
+        <TextView
+            android:id="@+id/detailScreenFailMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailScreenFailIcon"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/service_health_description_margin"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@string/dialog_not_responding_description"
+            android:textAlignment="center"
+            android:textColor="@color/colorDemiWhite"
+            android:textSize="@dimen/text_body_size" />
+
+        <TextView
+            android:id="@+id/detailScreenTryAgainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailScreenFailMessage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@string/dialog_not_responding_positive_button_text"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_body_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/detailScreenLoaderContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

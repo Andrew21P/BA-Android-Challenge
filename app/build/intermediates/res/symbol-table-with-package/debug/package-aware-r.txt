@@ -1162,6 +1162,9 @@ id design_navigation_view
 id detailScreenBackButton
 id detailScreenChoicesText
 id detailScreenDate
+id detailScreenEmptyState
+id detailScreenFailIcon
+id detailScreenFailMessage
 id detailScreenHorizontalSeparator
 id detailScreenImage
 id detailScreenLoaderContainer
@@ -1176,6 +1179,7 @@ id detailScreenOption4Result
 id detailScreenOptionContainer
 id detailScreenOptionRow1
 id detailScreenTitle
+id detailScreenTryAgainButton
 id detailScreenVoteButton
 id detailScreensShareFloatingButton
 id dimensions

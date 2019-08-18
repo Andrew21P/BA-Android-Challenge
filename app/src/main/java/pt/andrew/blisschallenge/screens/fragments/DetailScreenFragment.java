@@ -31,6 +31,7 @@ import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
 import pt.andrew.blisschallenge.network.entities.ServiceData;
+import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +43,7 @@ import retrofit2.Response;
 public class DetailScreenFragment extends Fragment {
 
     private static String QUESTION_ID_ARGUMENT = "QUESTION_ID_ARGUMENT";
+    private static String FROM_URI_ARGUMENT = "FROM_URI_ARGUMENT";
     private static int CHOICES_QTY_DEFAULT = 4;
 
     @BindView(R.id.detailScreenTitle)
@@ -76,11 +78,16 @@ public class DetailScreenFragment extends Fragment {
     TextView _option3Result;
     @BindView(R.id.detailScreenOption4Result)
     TextView _option4Result;
+    @BindView(R.id.detailScreenEmptyState)
+    View _emptyState;
+    @BindView(R.id.detailScreenTryAgainButton)
+    View _tryAgainButton;
 
     private Question _question;
     private int _questionId;
     private ServiceData _serviceData;
     private ShareScreenDialog _shareDialog;
+    private boolean _fromURI = false;
 
     private SparseArray<CheckBox> _optionMap = new SparseArray<>();
 
@@ -94,6 +101,16 @@ public class DetailScreenFragment extends Fragment {
         args.putInt(QUESTION_ID_ARGUMENT, questionId);
         detailScreenFragment.setArguments(args);
 
+        return detailScreenFragment;
+    }
+
+    public static DetailScreenFragment newInstance(int _questionId, boolean fromUri) {
+        DetailScreenFragment detailScreenFragment = newInstance(_questionId);
+        Bundle args = detailScreenFragment.getArguments();
+        if (args != null) {
+            args.putBoolean(FROM_URI_ARGUMENT, fromUri);
+        }
+        detailScreenFragment.setArguments(args);
         return detailScreenFragment;
     }
 
@@ -111,10 +128,22 @@ public class DetailScreenFragment extends Fragment {
 
         _loader.bringToFront();
 
+        if (getArguments() != null) {
+            if (getArguments().getBoolean(FROM_URI_ARGUMENT)) {
+                _fromURI = true;
+            }
+        }
+
         _backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                if (_fromURI) {
+                    BaseScreenActivity activity = (BaseScreenActivity) getActivity();
+                    activity.onBackPressed();
+                    activity.startFromSplash();
+                } else {
+                    getActivity().onBackPressed();
+                }
             }
         });
 
@@ -157,6 +186,10 @@ public class DetailScreenFragment extends Fragment {
         }
 
         _serviceData = RetrofitInstance.getRetrofitServiceInstance().create(ServiceData.class);
+        callService();
+    }
+
+    private void callService() {
         Call<Question> call = _serviceData.getQuestion(_questionId);
 
         call.enqueue(new Callback<Question>() {
@@ -165,12 +198,27 @@ public class DetailScreenFragment extends Fragment {
                 if (response.body() != null) {
                     _question = response.body();
                     setLayout();
+                } else {
+                    setEmptyState();
                 }
             }
 
             @Override
             public void onFailure(Call<Question> call, Throwable t) {
+                setEmptyState();
+            }
+        });
+    }
 
+    private void setEmptyState() {
+        _emptyState.setVisibility(View.VISIBLE);
+        _emptyState.bringToFront();
+
+        _tryAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _emptyState.setVisibility(View.GONE);
+                callService();
             }
         });
     }

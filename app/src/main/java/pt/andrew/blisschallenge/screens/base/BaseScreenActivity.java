@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import pt.andrew.blisschallenge.R;
+import pt.andrew.blisschallenge.screens.fragments.DetailScreenFragment;
 import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 
 /**
@@ -17,6 +18,7 @@ import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 public class BaseScreenActivity extends AppCompatActivity {
 
     public static String QUESTION_LIST_FILTER_QUERY = "question_filter";
+    public static String QUESTION_ID_QUERY = "question_id";
 
     @BindView(R.id.baseScreenActivityFrameContainer)
     FrameLayout _baseFragmentContainer;
@@ -27,9 +29,13 @@ public class BaseScreenActivity extends AppCompatActivity {
 
         if (data != null) {
             String filter = data.getQueryParameter(QUESTION_LIST_FILTER_QUERY);
+            String questionId = data.getQueryParameter(QUESTION_ID_QUERY);
             if (filter != null) {
                 QuestionScreenFragment questionScreenFragment = QuestionScreenFragment.newInstance(filter);
                 getSupportFragmentManager().beginTransaction().replace(R.id.baseScreenActivityFrameContainer, questionScreenFragment).addToBackStack(null).commit();
+            } else if (questionId != null) {
+                DetailScreenFragment detailScreenFragment = DetailScreenFragment.newInstance(Integer.valueOf(questionId), true);
+                getSupportFragmentManager().beginTransaction().replace(R.id.baseScreenActivityFrameContainer, detailScreenFragment).addToBackStack(null).commit();
             }
         } else {
             startFromSplash();
@@ -43,7 +49,7 @@ public class BaseScreenActivity extends AppCompatActivity {
         onNewIntent(getIntent());
     }
 
-    private void startFromSplash() {
+    public  void startFromSplash() {
         getSupportFragmentManager().beginTransaction().add(R.id.baseScreenActivityFrameContainer, new QuestionScreenFragment()).commit();
     }
 }
