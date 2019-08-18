@@ -7,11 +7,17 @@
     <string name="dialog_not_responding_positive_button_text">Try Again</string>
     <string name="dialog_not_responding_description">Sorry, our server is not responding</string>
     <string name="search">Search question…</string>
-    <string name="share_results">SHARE QUESTION LIST</string>
+    <string name="share_results">Share Question List</string>
+    <string name="share_question">Share Question</string>
     <string name="share_title">Share Via</string>
     <string name="share_negative_resume">Sorry, we can\'t share this right now, try again later</string>
     <string name="share_positive_resume">Shared successfully!</string>
-    <string name="email">e-mail</string>_resumeText
-    <string name="close">close</string>
-    <string name="send">send</string>
+    <string name="email">E-mail</string>_resumeText
+    <string name="close">Close</string>
+    <string name="send">Send</string>
+    <string name="choices">Choices:</string>
+    <string name="vote">Vote</string>
+    <string name="back_to_list">Back to question list</string>
+    <string name="results">Results:</string>
+    <string name="votes">Votes: %d</string>
 </resources>

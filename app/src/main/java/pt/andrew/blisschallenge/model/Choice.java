@@ -25,4 +25,8 @@ public class Choice {
     public int getChoiceVotes() {
         return _choiceVotes;
     }
+
+    public void sumChoiceVote() {
+        _choiceVotes++;
+    }
 }

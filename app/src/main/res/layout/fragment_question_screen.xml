@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/colorBackground"
-    tools:context=".screens.QuestionsScreenActivity">
+    android:background="@color/colorBackground">
 
     <RelativeLayout
         android:id="@+id/questionsScreenLoaderContainer"
@@ -63,7 +62,7 @@
             android:fontFamily="@font/raleway_semibold"
             android:text="@string/dialog_not_responding_description"
             android:textAlignment="center"
-            android:textColor="@color/pureWhite"
+            android:textColor="@color/colorDemiWhite"
             android:textSize="@dimen/text_body_size" />
 
         <TextView
@@ -85,28 +84,16 @@
         android:id="@+id/questionsScreenSearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/question_sub_title_bar_margin"
+        android:layout_marginEnd="@dimen/question_sub_title_bar_margin"
         android:focusable="false"
         app:defaultQueryHint="@string/search"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryBackground="@android:color/transparent"
+        app:queryBackground="@drawable/cornered_search_view"
         app:queryHint="@string/search" />
-
-    <TextView
-        android:id="@+id/questionsScreensShareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/question_sub_title_bar_margin"
-        android:fontFamily="@font/raleway_bold"
-        android:text="@string/share_results"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_body_size"
-        app:layout_constraintBottom_toTopOf="@+id/questionsScreenSearchViewHorizontalSeparator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreenSearchView" />
 
     <View
         android:id="@+id/questionsScreenSearchViewHorizontalSeparator"
@@ -118,17 +105,31 @@
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsScreensShareButton" />
+        app:layout_constraintTop_toBottomOf="@+id/questionsScreenSearchView" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/questionsScreenRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/question_recycler_view_height"
+        android:focusable="true"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionsScreenSearchViewHorizontalSeparator"
         tools:visibility="gone" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/questionsScreensShareFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/question_margin"
+        android:backgroundTint="@color/colorPrimary"
+        android:focusable="true"
+        android:src="@android:drawable/ic_dialog_email"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

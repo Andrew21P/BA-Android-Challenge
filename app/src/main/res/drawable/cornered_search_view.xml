@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/colorBackgroundDarker" />
+    <corners android:radius="@dimen/cornered_search_box_padding" />
+    <padding
+        android:bottom="@dimen/cornered_search_box_padding"
+        android:left="@dimen/cornered_search_box_padding"
+        android:right="@dimen/cornered_search_box_padding"
+        android:top="@dimen/cornered_search_box_padding" />
+</shape>

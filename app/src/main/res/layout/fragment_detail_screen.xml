@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".screens.fragments.DetailScreenFragment">
+
+    <RelativeLayout
+        android:id="@+id/detailScreenLoaderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorBackground"
+        android:gravity="center">
+
+        <ProgressBar
+            android:layout_width="@dimen/loader_size"
+            android:layout_height="@dimen/loader_size"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/detailScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/detail_title_margin"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/colorDemiWhite"
+        android:textSize="@dimen/text_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/detailScreenDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/detail_title_margin"
+        android:layout_marginBottom="@dimen/detail_date_margin_bottom"
+        android:fontFamily="@font/raleway"
+        android:textColor="@color/colorDemiWhite"
+        android:textSize="@dimen/question_row_data_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenTitle"
+        tools:text="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/detailScreenImage"
+        android:layout_width="@dimen/detail_image_width"
+        android:layout_height="@dimen/detail_image_height"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/detail_image_margin_top"
+        android:layout_marginBottom="@dimen/detail_image_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenDate" />
+
+    <View
+        android:id="@+id/detailScreenHorizontalSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_row_separator_horizontal_height"
+        android:layout_marginStart="@dimen/detail_separator_margin_horizontal"
+        android:layout_marginEnd="@dimen/detail_separator_margin_horizontal"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenImage" />
+
+    <TextView
+        android:id="@+id/detailScreenChoicesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/detail_separator_margin_horizontal"
+        android:layout_marginTop="@dimen/detail_separator_margin_top"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/choices"
+        android:textColor="@color/colorDemiWhite"
+        android:textSize="@dimen/text_body_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenHorizontalSeparator" />
+
+    <RelativeLayout
+        android:id="@+id/detailScreenOptionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/detail_separator_margin_top"
+        android:animateLayoutChanges="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenChoicesText">
+
+        <LinearLayout
+            android:id="@+id/detailScreenOptionRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="@dimen/detail_option_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_checkbox_margin"
+                android:layout_weight="@dimen/detail_option_weight"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/detailScreenOption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite" />
+
+                <TextView
+                    android:id="@+id/detailScreenOption1Result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingStart="@dimen/detail_result_vote_margin_left"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/detail_option_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_checkbox_margin"
+                android:layout_weight="@dimen/detail_option_weight"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/detailScreenOption2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite" />
+
+                <TextView
+                    android:id="@+id/detailScreenOption2Result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingStart="@dimen/detail_result_vote_margin_left"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailScreenOptionRow1"
+            android:layout_marginTop="@dimen/detail_separator_margin_top"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/detail_option_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_checkbox_margin"
+                android:layout_weight="@dimen/detail_option_weight"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/detailScreenOption3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/raleway"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite" />
+
+                <TextView
+                    android:id="@+id/detailScreenOption3Result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingStart="@dimen/detail_result_vote_margin_left"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/detail_option_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_checkbox_margin"
+                android:layout_weight="@dimen/detail_option_weight"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/detailScreenOption4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite" />
+
+                <TextView
+                    android:id="@+id/detailScreenOption4Result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingStart="@dimen/detail_result_vote_margin_left"
+                    android:singleLine="true"
+                    android:textColor="@color/colorDemiWhite"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/detailScreenVoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/detail_vote_button_margin_vertical"
+        android:layout_marginBottom="@dimen/detail_vote_button_margin_vertical"
+        android:clickable="false"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/vote"
+        android:textColor="@color/colorSelectable"
+        android:textSize="@dimen/text_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenOptionContainer" />
+
+    <TextView
+        android:id="@+id/detailScreenBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/detail_vote_button_margin_vertical"
+        android:layout_marginBottom="@dimen/detail_vote_button_margin_vertical"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/back_to_list"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailScreenVoteButton" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/detailScreensShareFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/question_margin"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@android:drawable/ic_dialog_email"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

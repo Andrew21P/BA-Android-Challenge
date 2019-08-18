@@ -5,9 +5,14 @@ package pt.andrew.blisschallenge.helpers;
  */
 public class ContentUrlHelper {
 
-    private static String questionUrl = "blissrecruitment://questions?";
+    private static String questionListUrl = "blissrecruitment://questions?";
+    private static String questionUrl = "question_id=";
 
-    public static String getQuestionsContentUrl(String limit, String offset, String filter) {
-        return questionUrl + "limit=" + limit + "&offset=" + offset + "&filter=" + filter;
+    public static String getQuestionListContentUrl(String limit, String offset, String filter) {
+        return questionListUrl + "limit=" + limit + "&offset=" + offset + "&filter=" + filter;
+    }
+
+    public static String getQuestionContentUrl(int questionId) {
+        return questionListUrl + questionUrl + questionId;
     }
 }

@@ -3,9 +3,9 @@
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:autofilledHighlight">@android:color/transparent</item>
-        <item name="android:textColorSecondary">@color/pureWhite</item>
-        <item name="android:editTextColor">@color/pureWhite</item>
-        <item name="android:textColorHint">@color/pureWhite</item>
+        <item name="android:textColorSecondary">@color/colorDemiWhite</item>
+        <item name="android:editTextColor">@color/colorDemiWhite</item>
+        <item name="android:textColorHint">@color/colorDemiWhite</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>

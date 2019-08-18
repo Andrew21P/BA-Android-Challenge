@@ -16,10 +16,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".screens.QuestionsScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity
             android:name=".screens.ServiceStatusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -30,9 +26,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:launchMode="singleTask"
             android:name=".screens.base.BaseScreenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="questions"
+                    android:scheme="blissrecruitment" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +39,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by andrew.fernandes on 18/08/2019
+ */
 
 public class QuestionScreenFragment extends Fragment {
+
+    private static final String QUESTION_SCREEN_FILTER_ARG = "QUESTION_SCREEN_FILTER_ARG";
 
     private static final int ITEM_VIEW_CACHE_SIZE = 20;
     private static final int QUESTION_LIMIT = 10;
@@ -53,23 +60,30 @@ public class QuestionScreenFragment extends Fragment {
     View _tryAgainButton;
     @BindView(R.id.questionsScreenSearchView)
     SearchView _searchView;
-    @BindView(R.id.questionsScreensShareButton)
+    @BindView(R.id.questionsScreensShareFloatingButton)
     View _shareButton;
     @BindView(R.id.questionsScreenSearchViewHorizontalSeparator)
     View _searchContainerSeparator;
 
     private ServiceData _serviceData;
     private QuestionsAdapter _questionsAdapter;
-    private Call<List<Question>> _call;
     private List<Question> _questionList;
     private ShareScreenDialog _shareDialog;
-    private Call<ServiceStatus> _shareCall;
     private int _offset = 0;
     private String _filter = "";
     private boolean _loadMore = false;
 
     public QuestionScreenFragment() {
         // Required empty public constructor
+    }
+
+    public static QuestionScreenFragment newInstance(String filter) {
+        Log.d("Dunyel", " filter: " + filter);
+        QuestionScreenFragment questionScreenFragment = new QuestionScreenFragment();
+        Bundle args = new Bundle();
+        args.putString(QUESTION_SCREEN_FILTER_ARG, filter);
+        questionScreenFragment.setArguments(args);
+        return questionScreenFragment;
     }
 
     @Override
@@ -83,6 +97,14 @@ public class QuestionScreenFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        if (getArguments() != null) {
+            if (getArguments().get(QUESTION_SCREEN_FILTER_ARG) != null) {
+                _filter = (String) getArguments().get(QUESTION_SCREEN_FILTER_ARG);
+                _searchView.setQuery(_filter, false);
+                _searchView.clearFocus();
+            }
+        }
 
         _questionList = new ArrayList<>();
         _questionsRecyclerView.setItemViewCacheSize(ITEM_VIEW_CACHE_SIZE);
@@ -123,6 +145,7 @@ public class QuestionScreenFragment extends Fragment {
         _shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                _searchView.clearFocus();
                 _shareDialog = new ShareScreenDialog();
                 _shareDialog.initDialog(getContext());
                 _shareDialog.showDialog(getString(R.string.share_results));
@@ -147,21 +170,25 @@ public class QuestionScreenFragment extends Fragment {
         ImageView searchIcon = _searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
         ImageView searchCloseIcon = _searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         searchIcon.setColorFilter(getContext().getColor(R.color.colorPrimary));
-        searchCloseIcon.setColorFilter(getContext().getColor(R.color.pureWhite));
+        searchCloseIcon.setColorFilter(getContext().getColor(R.color.colorDemiWhite));
         TextView _searchText = _searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.raleway);
         _searchText.setTypeface(customFont);
+        _searchText.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_body_size));
 
         _serviceData = RetrofitInstance.getRetrofitServiceInstance().create(ServiceData.class);
         callService();
     }
 
     private void callService() {
-        _call = _serviceData.getQuestions(_offset, _filter);
+        Call<List<Question>> _call = _serviceData.getQuestions(_offset, _filter);
 
         _call.enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
+                _searchView.setVisibility(View.VISIBLE);
+                _searchContainerSeparator.setVisibility(View.VISIBLE);
+                _shareButton.setVisibility(View.VISIBLE);
                 generateDataList(response.body());
             }
 
@@ -174,6 +201,7 @@ public class QuestionScreenFragment extends Fragment {
 
     private void generateDataList(List<Question> questionList) {
         _questionList.addAll(questionList);
+        _shareButton.setVisibility(View.VISIBLE);
         _loader.setVisibility(View.GONE);
 
         _loadMore = questionList.size() == QUESTION_LIMIT;
@@ -204,11 +232,15 @@ public class QuestionScreenFragment extends Fragment {
 
     private void showEmptyState() {
         _loader.setVisibility(View.GONE);
+        _shareButton.setVisibility(View.GONE);
+        _searchView.setVisibility(View.GONE);
+        _searchContainerSeparator.setVisibility(View.GONE);
         _emptyState.setVisibility(View.VISIBLE);
         _tryAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _emptyState.setVisibility(View.GONE);
+                _shareButton.setVisibility(View.GONE);
                 _loader.setVisibility(View.VISIBLE);
                 _loader.bringToFront();
                 callService();
@@ -218,8 +250,8 @@ public class QuestionScreenFragment extends Fragment {
 
     private void search() {
         _searchView.bringToFront();
-        _shareButton.bringToFront();
         _searchContainerSeparator.bringToFront();
+        _shareButton.setVisibility(View.GONE);
         _loader.setVisibility(View.VISIBLE);
         _filter = _searchView.getQuery().toString();
         callService();
@@ -228,8 +260,8 @@ public class QuestionScreenFragment extends Fragment {
     private void shareQuestionList(String email) {
         _shareDialog.showLoader();
 
-        _shareCall = _serviceData.getShareResponse(email,
-                ContentUrlHelper.getQuestionsContentUrl(ServiceData.QUESTION_LIMIT,
+        Call<ServiceStatus> _shareCall = _serviceData.getShareResponse(email,
+                ContentUrlHelper.getQuestionListContentUrl(ServiceData.QUESTION_LIMIT,
                         String.valueOf(_offset), _filter));
 
         _shareCall.enqueue(new Callback<ServiceStatus>() {

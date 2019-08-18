@@ -1,6 +1,7 @@
 package pt.andrew.blisschallenge.adapter;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.List;
 import pt.andrew.blisschallenge.R;
 import pt.andrew.blisschallenge.helpers.DateHelper;
 import pt.andrew.blisschallenge.model.Question;
+import pt.andrew.blisschallenge.screens.fragments.DetailScreenFragment;
+import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 
 /**
  * Created by andrew.fernandes on 16/08/2019
@@ -60,8 +63,17 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     }
 
     @Override
-    public void onBindViewHolder(QuestionViewHolder holder, int position) {
-        Question currentQuestion = _questionList.get(position);
+    public void onBindViewHolder(final QuestionViewHolder holder, int position) {
+        final Question currentQuestion = _questionList.get(position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                DetailScreenFragment detailScreenFragment = DetailScreenFragment.newInstance(currentQuestion.getQuestionId());
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.baseScreenActivityFrameContainer, detailScreenFragment).addToBackStack(null).commit();
+            }
+        });
 
         holder.questionTitle.setText(currentQuestion.getQuestionTitle());
         holder.questionData.setText(DateHelper.formatDate(currentQuestion.getQuestionPublishDate(), _context));

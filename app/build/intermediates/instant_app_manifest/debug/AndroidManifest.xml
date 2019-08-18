@@ -24,10 +24,6 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="pt.andrew.blisschallenge.screens.QuestionsScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity
             android:name="pt.andrew.blisschallenge.screens.ServiceStatusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
@@ -39,8 +35,20 @@
         </activity>
         <activity
             android:name="pt.andrew.blisschallenge.screens.base.BaseScreenActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="questions"
+                    android:scheme="blissrecruitment" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
