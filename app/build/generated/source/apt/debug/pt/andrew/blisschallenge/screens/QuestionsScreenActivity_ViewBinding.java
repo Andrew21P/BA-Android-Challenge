@@ -4,6 +4,7 @@ package pt.andrew.blisschallenge.screens;
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
@@ -27,6 +28,9 @@ public class QuestionsScreenActivity_ViewBinding implements Unbinder {
     target._loader = Utils.findRequiredView(source, R.id.questionsScreenLoaderContainer, "field '_loader'");
     target._emptyState = Utils.findRequiredView(source, R.id.questionsScreenEmptyState, "field '_emptyState'");
     target._tryAgainButton = Utils.findRequiredView(source, R.id.questionsScreenTryAgainButton, "field '_tryAgainButton'");
+    target._searchView = Utils.findRequiredViewAsType(source, R.id.questionsScreenSearchView, "field '_searchView'", SearchView.class);
+    target._shareButton = Utils.findRequiredView(source, R.id.questionsScreensShareButton, "field '_shareButton'");
+    target._searchContainerSeparator = Utils.findRequiredView(source, R.id.questionsScreenSearchViewHorizontalSeparator, "field '_searchContainerSeparator'");
   }
 
   @Override
@@ -40,5 +44,8 @@ public class QuestionsScreenActivity_ViewBinding implements Unbinder {
     target._loader = null;
     target._emptyState = null;
     target._tryAgainButton = null;
+    target._searchView = null;
+    target._shareButton = null;
+    target._searchContainerSeparator = null;
   }
 }

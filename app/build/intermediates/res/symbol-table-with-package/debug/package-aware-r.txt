@@ -598,6 +598,7 @@ dimen question_row_text_margin
 dimen question_row_thumbnail_border_size
 dimen question_row_thumbnail_padding
 dimen question_row_title_text_size
+dimen question_sub_title_bar_margin
 dimen question_thumbnail_size
 dimen service_health_description_margin
 dimen service_health_logo_margin
@@ -826,7 +827,10 @@ id questionsScreenFailMessage
 id questionsScreenHorizontalSeparator
 id questionsScreenLoaderContainer
 id questionsScreenRecyclerView
+id questionsScreenSearchView
+id questionsScreenSearchViewHorizontalSeparator
 id questionsScreenTryAgainButton
+id questionsScreensShareButton
 id radio
 id right
 id right_icon
@@ -977,10 +981,12 @@ string app_name
 string dialog_not_responding_description
 string dialog_not_responding_positive_button_text
 string dialog_not_responding_title
+string search
 string search_menu_title
 string service_down
 string service_ok
 string service_status
+string share_results
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
