@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -67,11 +66,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         holder.questionTitle.setText(currentQuestion.getQuestionTitle());
         holder.questionData.setText(DateHelper.formatDate(currentQuestion.getQuestionPublishDate(), _context));
 
-        Picasso.Builder builder = new Picasso.Builder(_context);
-        builder.downloader(new OkHttp3Downloader(_context));
-        builder.build().load(currentQuestion.getQuestionThumbnailUrl())
-                .placeholder((R.mipmap.ic_launcher))
-                .error(R.mipmap.ic_launcher)
+        Glide.with(_context).load(currentQuestion.getQuestionThumbnailUrl())
+                .centerCrop().placeholder(R.mipmap.ic_launcher)
                 .into(holder.questionThumbnail);
     }
 

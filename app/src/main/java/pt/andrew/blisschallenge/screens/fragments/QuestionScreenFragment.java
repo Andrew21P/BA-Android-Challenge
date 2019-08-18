@@ -87,7 +87,7 @@ public class QuestionScreenFragment extends Fragment {
         _questionList = new ArrayList<>();
         _questionsRecyclerView.setItemViewCacheSize(ITEM_VIEW_CACHE_SIZE);
         _questionsRecyclerView.setDrawingCacheEnabled(true);
-        _questionsRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        _questionsRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
 
         ImageView closeButton = this._searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
 
