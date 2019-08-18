@@ -32,9 +32,12 @@ public class ServiceStatusActivity extends AppCompatActivity {
     TextView _description;
     @BindView(R.id.serviceHealthStatusIcon)
     ImageView _statusIcon;
+    @BindView(R.id.serviceHealthScreenTryAgainButton)
+    View _tryAgainButton;
 
-    Handler _handler;
-    Runnable _runnable;
+    private Handler _handler;
+    private Runnable _runnable;
+    private ServiceData _serviceData;
     boolean _showOkLayout = false;
 
     @Override
@@ -42,6 +45,16 @@ public class ServiceStatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_health);
         ButterKnife.bind(this);
+
+        _tryAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mainContainer.setVisibility(View.GONE);
+                _loader.setVisibility(View.VISIBLE);
+                _loader.bringToFront();
+                serviceCall();
+            }
+        });
 
         _handler = new Handler();
         _runnable = new Runnable() {
@@ -54,8 +67,12 @@ public class ServiceStatusActivity extends AppCompatActivity {
             }
         };
 
-        ServiceData serviceData = RetrofitInstance.getRetrofitServiceInstance().create(ServiceData.class);
-        Call<ServiceStatus> statusCall = serviceData.getServiceStatus();
+        _serviceData = RetrofitInstance.getRetrofitServiceInstance().create(ServiceData.class);
+        serviceCall();
+    }
+
+    private void serviceCall() {
+        Call<ServiceStatus> statusCall = _serviceData.getServiceStatus();
 
         statusCall.enqueue(new Callback<ServiceStatus>() {
             @Override
@@ -82,6 +99,7 @@ public class ServiceStatusActivity extends AppCompatActivity {
 
     private void setServiceDownLayout() {
         _showOkLayout = false;
+        _tryAgainButton.setVisibility(View.VISIBLE);
         _description.setText(getString(R.string.service_status, getString(R.string.service_down)));
         _statusIcon.setImageResource(R.drawable.fail_icon);
     }

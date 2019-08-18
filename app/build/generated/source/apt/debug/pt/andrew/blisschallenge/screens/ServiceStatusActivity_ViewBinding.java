@@ -28,6 +28,7 @@ public class ServiceStatusActivity_ViewBinding implements Unbinder {
     target._loader = Utils.findRequiredView(source, R.id.serviceHealthLoaderContainer, "field '_loader'");
     target._description = Utils.findRequiredViewAsType(source, R.id.serviceHealthDescription, "field '_description'", TextView.class);
     target._statusIcon = Utils.findRequiredViewAsType(source, R.id.serviceHealthStatusIcon, "field '_statusIcon'", ImageView.class);
+    target._tryAgainButton = Utils.findRequiredView(source, R.id.serviceHealthScreenTryAgainButton, "field '_tryAgainButton'");
   }
 
   @Override
@@ -41,5 +42,6 @@ public class ServiceStatusActivity_ViewBinding implements Unbinder {
     target._loader = null;
     target._description = null;
     target._statusIcon = null;
+    target._tryAgainButton = null;
   }
 }

@@ -59,6 +59,19 @@
             android:textColor="@color/colorDemiWhite"
             android:textSize="@dimen/text_body_size" />
 
+        <TextView
+            android:id="@+id/serviceHealthScreenTryAgainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/service_health_description_margin"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="@string/dialog_not_responding_positive_button_text"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_body_size"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/horizontal_line_separator_height"

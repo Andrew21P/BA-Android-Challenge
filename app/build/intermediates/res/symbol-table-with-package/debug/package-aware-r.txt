@@ -1288,6 +1288,7 @@ id selected
 id serviceHealthDescription
 id serviceHealthLoaderContainer
 id serviceHealthMainContainer
+id serviceHealthScreenTryAgainButton
 id serviceHealthStatusIcon
 id shareScreenButtonContainer
 id shareScreenCloseButton
