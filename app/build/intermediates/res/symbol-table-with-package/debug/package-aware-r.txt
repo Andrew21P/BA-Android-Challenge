@@ -596,6 +596,7 @@ dimen question_row_data_text_size
 dimen question_row_elevation
 dimen question_row_separator_horizontal_height
 dimen question_row_separator_horizontal_margin
+dimen question_row_separator_vertical_margin
 dimen question_row_text_margin
 dimen question_row_thumbnail_border_size
 dimen question_row_thumbnail_padding

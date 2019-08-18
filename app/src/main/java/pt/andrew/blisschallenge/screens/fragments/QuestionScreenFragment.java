@@ -18,11 +18,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
+import pt.andrew.blisschallenge.Views.EndlessRecyclerViewScrollListener;
 import pt.andrew.blisschallenge.adapter.QuestionsAdapter;
 import pt.andrew.blisschallenge.dialog.ShareScreenDialog;
 import pt.andrew.blisschallenge.helpers.ContentUrlHelper;
@@ -39,6 +41,7 @@ import retrofit2.Response;
 public class QuestionScreenFragment extends Fragment {
 
     private static final int ITEM_VIEW_CACHE_SIZE = 20;
+    private static final int QUESTION_LIMIT = 10;
 
     @BindView(R.id.questionsScreenRecyclerView)
     RecyclerView _questionsRecyclerView;
@@ -58,11 +61,12 @@ public class QuestionScreenFragment extends Fragment {
     private ServiceData _serviceData;
     private QuestionsAdapter _questionsAdapter;
     private Call<List<Question>> _call;
+    private List<Question> _questionList;
     private ShareScreenDialog _shareDialog;
     private Call<ServiceStatus> _shareCall;
     private int _offset = 0;
     private String _filter = "";
-
+    private boolean _loadMore = false;
 
     public QuestionScreenFragment() {
         // Required empty public constructor
@@ -80,6 +84,7 @@ public class QuestionScreenFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        _questionList = new ArrayList<>();
         _questionsRecyclerView.setItemViewCacheSize(ITEM_VIEW_CACHE_SIZE);
         _questionsRecyclerView.setDrawingCacheEnabled(true);
         _questionsRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
@@ -89,7 +94,10 @@ public class QuestionScreenFragment extends Fragment {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                _offset = 0;
                 _filter = "";
+                _questionList.clear();
+                _questionsAdapter.notifyDataSetChanged();
                 _searchView.setQuery(_filter, false);
                 _searchView.clearFocus();
                 search();
@@ -99,6 +107,9 @@ public class QuestionScreenFragment extends Fragment {
         _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                _offset = 0;
+                _questionList.clear();
+                _questionsAdapter.notifyDataSetChanged();
                 search();
                 return false;
             }
@@ -162,16 +173,30 @@ public class QuestionScreenFragment extends Fragment {
     }
 
     private void generateDataList(List<Question> questionList) {
+        _questionList.addAll(questionList);
         _loader.setVisibility(View.GONE);
 
+        _loadMore = questionList.size() == QUESTION_LIMIT;
+
         if (_questionsAdapter == null) {
-            _questionsAdapter = new QuestionsAdapter(getContext(), questionList);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+            _questionsAdapter = new QuestionsAdapter(getContext(), _questionList);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             _questionsRecyclerView.setLayoutManager(layoutManager);
             _questionsRecyclerView.setAdapter(_questionsAdapter);
             DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
             itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.question_recycler_view_sepator));
             _questionsRecyclerView.addItemDecoration(itemDecorator);
+            EndlessRecyclerViewScrollListener scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+                @Override
+                public void onLoadMore() {
+                    if (_loadMore) {
+                        _offset = _offset + QUESTION_LIMIT;
+                        callService();
+                    }
+
+                }
+            };
+            _questionsRecyclerView.addOnScrollListener(scrollListener);
         } else {
             _questionsAdapter.notifyDataSetChanged();
         }
@@ -210,11 +235,11 @@ public class QuestionScreenFragment extends Fragment {
         _shareCall.enqueue(new Callback<ServiceStatus>() {
             @Override
             public void onResponse(Call<ServiceStatus> call, Response<ServiceStatus> response) {
-               if (ValidationsHelper.isServiceHealthOk(response.body())) {
-                   _shareDialog.showResume(getString(R.string.share_positive_resume));
-               } else {
-                   _shareDialog.showResume(getString(R.string.share_negative_resume));
-               }
+                if (ValidationsHelper.isServiceHealthOk(response.body())) {
+                    _shareDialog.showResume(getString(R.string.share_positive_resume));
+                } else {
+                    _shareDialog.showResume(getString(R.string.share_negative_resume));
+                }
             }
 
             @Override
