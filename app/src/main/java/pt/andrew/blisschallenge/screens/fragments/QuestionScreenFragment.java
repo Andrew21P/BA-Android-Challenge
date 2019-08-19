@@ -123,8 +123,8 @@ public class QuestionScreenFragment extends Fragment {
                 if (_filter != null && !_filter.equals("")) {
                     _searchView.setQuery(_filter, false);
                     _searchView.clearFocus();
-                } else {
-                    _searchView.requestFocus();
+                } else if (_filter.equals("")){
+                    _searchView.onActionViewExpanded();
                 }
             }
         }
