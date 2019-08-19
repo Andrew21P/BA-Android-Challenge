@@ -1,4 +1,4 @@
-package pt.andrew.blisschallenge.network.entities;
+package pt.andrew.blisschallenge.interfaces;
 
 import java.util.List;
 

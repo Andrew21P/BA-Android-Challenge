@@ -7,8 +7,6 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import pt.andrew.blisschallenge.R;
 
 /**
@@ -19,7 +17,7 @@ public class ShareScreenDialog {
     Dialog _shareDialog;
 
     public void initDialog(Context context) {
-        _shareDialog= new Dialog(context);
+        _shareDialog = new Dialog(context);
     }
 
     public void showDialog(String dialogTitle) {

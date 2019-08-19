@@ -18,6 +18,7 @@
         android:focusable="true"
         android:gravity="center"
         android:orientation="vertical"
+        android:visibility="gone"
         tools:ignore="UselessParent">
 
         <TextView

@@ -14,7 +14,7 @@ import pt.andrew.blisschallenge.R;
 import pt.andrew.blisschallenge.helpers.ValidationsHelper;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
-import pt.andrew.blisschallenge.network.entities.ServiceData;
+import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;

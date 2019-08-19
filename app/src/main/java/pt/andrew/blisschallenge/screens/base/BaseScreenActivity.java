@@ -44,12 +44,19 @@ public class BaseScreenActivity extends AppCompatActivity {
             } else if (questionId != null) {
                 DetailScreenFragment detailScreenFragment = DetailScreenFragment.newInstance(Integer.valueOf(questionId), true);
                 getSupportFragmentManager().beginTransaction().replace(R.id.baseScreenActivityFrameContainer, detailScreenFragment).addToBackStack(null).commit();
+            } else {
+                startFromSplash();
             }
         } else {
             startFromSplash();
         }
 
         BlissChallengeApplication.getInstance().setCurrentActivity(BaseScreenActivity.this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -60,7 +67,7 @@ public class BaseScreenActivity extends AppCompatActivity {
         onNewIntent(getIntent());
     }
 
-    public  void startFromSplash() {
+    public void startFromSplash() {
         getSupportFragmentManager().beginTransaction().add(R.id.baseScreenActivityFrameContainer, new QuestionScreenFragment()).commit();
     }
 

@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
-import pt.andrew.blisschallenge.Views.EndlessRecyclerViewScrollListener;
+import pt.andrew.blisschallenge.views.EndlessRecyclerViewScrollListener;
 import pt.andrew.blisschallenge.adapter.QuestionsAdapter;
 import pt.andrew.blisschallenge.dialog.ShareScreenDialog;
 import pt.andrew.blisschallenge.helpers.ContentUrlHelper;
@@ -34,7 +35,7 @@ import pt.andrew.blisschallenge.helpers.ValidationsHelper;
 import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
-import pt.andrew.blisschallenge.network.entities.ServiceData;
+import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,7 +80,6 @@ public class QuestionScreenFragment extends Fragment {
     }
 
     public static QuestionScreenFragment newInstance(String filter) {
-        Log.d("Dunyel", " filter: " + filter);
         QuestionScreenFragment questionScreenFragment = new QuestionScreenFragment();
         Bundle args = new Bundle();
         args.putString(QUESTION_SCREEN_FILTER_ARG, filter);
@@ -92,6 +92,23 @@ public class QuestionScreenFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question_screen, container, false);
         ButterKnife.bind(this, view);
+
+        //Back pressed Logic for fragment
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        getActivity().finish();
+                        return true;
+                    }
+                }
+                return true;
+            }
+        });
+
         return view;
     }
 
@@ -102,8 +119,13 @@ public class QuestionScreenFragment extends Fragment {
         if (getArguments() != null) {
             if (getArguments().get(QUESTION_SCREEN_FILTER_ARG) != null) {
                 _filter = (String) getArguments().get(QUESTION_SCREEN_FILTER_ARG);
-                _searchView.setQuery(_filter, false);
-                _searchView.clearFocus();
+
+                if (_filter != null && !_filter.equals("")) {
+                    _searchView.setQuery(_filter, false);
+                    _searchView.clearFocus();
+                } else {
+                    _searchView.requestFocus();
+                }
             }
         }
 

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,11 @@ import pt.andrew.blisschallenge.dialog.ShareScreenDialog;
 import pt.andrew.blisschallenge.helpers.ContentUrlHelper;
 import pt.andrew.blisschallenge.helpers.DateHelper;
 import pt.andrew.blisschallenge.helpers.ValidationsHelper;
+import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.model.Choice;
 import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
-import pt.andrew.blisschallenge.network.entities.ServiceData;
 import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,6 +120,29 @@ public class DetailScreenFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail_screen, container, false);
         ButterKnife.bind(this, view);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        if (_fromURI) {
+                            BaseScreenActivity activity = (BaseScreenActivity) getActivity();
+                            activity.onBackPressed();
+                            activity.startFromSplash();
+                            return true;
+                        } else {
+                            getActivity().onBackPressed();
+                            return true;
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
         return view;
     }
 
