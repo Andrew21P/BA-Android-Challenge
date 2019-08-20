@@ -12,6 +12,11 @@ import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
  */
 public final class BlissChallengeApplication extends Application {
 
+    /**
+     * Running on whole app Life Cycle, added current activity to make generic the
+     * control of network broadcast
+     */
+
     private BaseScreenActivity _currentActivity;
 
     private static BlissChallengeApplication instance = new BlissChallengeApplication();

@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
  */
 public class NetworkService {
 
-    Context _context;
+    private Context _context;
 
     public NetworkService(Context context) {
         _context = context;

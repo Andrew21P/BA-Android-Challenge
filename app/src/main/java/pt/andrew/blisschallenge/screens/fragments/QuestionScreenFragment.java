@@ -11,7 +11,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,16 +26,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
-import pt.andrew.blisschallenge.views.EndlessRecyclerViewScrollListener;
 import pt.andrew.blisschallenge.adapter.QuestionsAdapter;
 import pt.andrew.blisschallenge.dialog.ShareScreenDialog;
 import pt.andrew.blisschallenge.helpers.ContentUrlHelper;
 import pt.andrew.blisschallenge.helpers.ValidationsHelper;
+import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
-import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
+import pt.andrew.blisschallenge.views.EndlessRecyclerViewScrollListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,7 +92,7 @@ public class QuestionScreenFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question_screen, container, false);
         ButterKnife.bind(this, view);
 
-        //Back pressed Logic for fragment
+        //Validation on back pressed for intent uri launch
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -123,7 +122,7 @@ public class QuestionScreenFragment extends Fragment {
                 if (_filter != null && !_filter.equals("")) {
                     _searchView.setQuery(_filter, false);
                     _searchView.clearFocus();
-                } else if (_filter.equals("")){
+                } else if (_filter.equals("")) {
                     _searchView.onActionViewExpanded();
                 }
             }

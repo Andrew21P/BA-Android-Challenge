@@ -14,6 +14,10 @@ import pt.andrew.blisschallenge.R;
  */
 public class ShareScreenDialog {
 
+    /**
+     * Custom dialog for sharing option
+     */
+
     Dialog _shareDialog;
 
     public void initDialog(Context context) {

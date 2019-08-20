@@ -855,6 +855,7 @@ dimen detail_separator_margin_horizontal
 dimen detail_separator_margin_top
 dimen detail_title_margin
 dimen detail_vote_button_margin_vertical
+dimen detail_vote_button_margin_vertical_bottom
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
 dimen fastscroll_default_thickness
@@ -947,6 +948,7 @@ dimen question_row_text_margin
 dimen question_row_thumbnail_border_size
 dimen question_row_thumbnail_padding
 dimen question_row_title_text_size
+dimen question_row_title_width
 dimen question_sub_title_bar_margin
 dimen question_thumbnail_size
 dimen service_health_description_margin

@@ -17,11 +17,11 @@ import pt.andrew.blisschallenge.R;
 import pt.andrew.blisschallenge.helpers.DateHelper;
 import pt.andrew.blisschallenge.model.Question;
 import pt.andrew.blisschallenge.screens.fragments.DetailScreenFragment;
-import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 
 /**
  * Created by andrew.fernandes on 16/08/2019
  */
+
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.QuestionViewHolder> {
 
     private Context _context;
@@ -34,8 +34,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
 
     class QuestionViewHolder extends RecyclerView.ViewHolder {
 
-        public final View questionView;
-
+        private final View questionView;
         private TextView questionTitle;
         private TextView questionData;
         private ImageView questionThumbnail;
@@ -43,7 +42,6 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         QuestionViewHolder(View itemView) {
             super(itemView);
             questionView = itemView;
-
             questionTitle = questionView.findViewById(R.id.questionRowTitle);
             questionData = questionView.findViewById(R.id.questionRowData);
             questionThumbnail = questionView.findViewById(R.id.questionRowThumbnail);
@@ -69,6 +67,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //On row click open detail screen fragment
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 DetailScreenFragment detailScreenFragment = DetailScreenFragment.newInstance(currentQuestion.getQuestionId());
                 activity.getSupportFragmentManager().beginTransaction().add(R.id.baseScreenActivityFrameContainer, detailScreenFragment).addToBackStack(null).commit();
@@ -76,8 +75,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         });
 
         holder.questionTitle.setText(currentQuestion.getQuestionTitle());
-        holder.questionData.setText(DateHelper.formatDate(currentQuestion.getQuestionPublishDate(), _context));
+        holder.questionData.setText(DateHelper.formatDate(currentQuestion.getQuestionPublishDate()));
 
+        //Load image thumbnail with Glade
         Glide.with(_context).load(currentQuestion.getQuestionThumbnailUrl())
                 .centerCrop().placeholder(R.mipmap.ic_launcher)
                 .into(holder.questionThumbnail);

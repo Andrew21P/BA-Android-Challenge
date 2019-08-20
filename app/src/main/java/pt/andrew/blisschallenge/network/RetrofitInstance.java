@@ -10,9 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitInstance {
 
-    /**
-     * Base URL for all service requests
-     */
+    //Base URL for all service requests
     private static final String BLISS_BASE_URL = "https://private-anon-2942175374-blissrecruitmentapi.apiary-mock.com";
 
     private static Retrofit _retrofitService;

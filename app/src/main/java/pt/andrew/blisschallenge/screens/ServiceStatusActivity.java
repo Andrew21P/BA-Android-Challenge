@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pt.andrew.blisschallenge.R;
 import pt.andrew.blisschallenge.helpers.ValidationsHelper;
+import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.model.ServiceStatus;
 import pt.andrew.blisschallenge.network.RetrofitInstance;
-import pt.andrew.blisschallenge.interfaces.ServiceData;
 import pt.andrew.blisschallenge.screens.base.BaseScreenActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -114,6 +114,8 @@ public class ServiceStatusActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        //If activity is send to background prevent app to open question screen on top
         _handler.removeCallbacks(_runnable);
     }
 

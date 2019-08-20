@@ -10,6 +10,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
  */
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
 
+    /**
+     * Endless scroll view for question screen
+     */
+
     private int _previousTotalItemCount = 0;
     private boolean _loading = true;
 

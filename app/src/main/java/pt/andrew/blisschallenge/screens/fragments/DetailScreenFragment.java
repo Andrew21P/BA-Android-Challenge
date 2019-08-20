@@ -89,7 +89,6 @@ public class DetailScreenFragment extends Fragment {
     private ServiceData _serviceData;
     private ShareScreenDialog _shareDialog;
     private boolean _fromURI = false;
-
     private SparseArray<CheckBox> _optionMap = new SparseArray<>();
 
     public DetailScreenFragment() {
@@ -108,9 +107,11 @@ public class DetailScreenFragment extends Fragment {
     public static DetailScreenFragment newInstance(int _questionId, boolean fromUri) {
         DetailScreenFragment detailScreenFragment = newInstance(_questionId);
         Bundle args = detailScreenFragment.getArguments();
+
         if (args != null) {
             args.putBoolean(FROM_URI_ARGUMENT, fromUri);
         }
+
         detailScreenFragment.setArguments(args);
         return detailScreenFragment;
     }
@@ -121,6 +122,7 @@ public class DetailScreenFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail_screen, container, false);
         ButterKnife.bind(this, view);
 
+        //Validation for call question screen service call on back for intent uri launch
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -252,10 +254,12 @@ public class DetailScreenFragment extends Fragment {
     }
 
     private void setLayout() {
-        Glide.with(getContext()).load(_question.getQuestionImageUrl()).centerInside().into(_image);
+        if (isAdded()) {
+            Glide.with(getContext()).load(_question.getQuestionImageUrl()).centerInside().into(_image);
+        }
 
         _title.setText(_question.getQuestionTitle());
-        _date.setText(DateHelper.formatDate(_question.getQuestionPublishDate(), getContext()));
+        _date.setText(DateHelper.formatDate(_question.getQuestionPublishDate()));
 
         List<Choice> choiceList = _question.getQuestionChoiceList();
 

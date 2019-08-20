@@ -21,6 +21,10 @@ import pt.andrew.blisschallenge.screens.fragments.QuestionScreenFragment;
 
 public class BaseScreenActivity extends AppCompatActivity {
 
+    /**
+     * Base Screen for all screens-fragments after Splashscreen
+     */
+
     public static String QUESTION_LIST_FILTER_QUERY = "question_filter";
     public static String QUESTION_ID_QUERY = "question_id";
 
@@ -35,6 +39,7 @@ public class BaseScreenActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         Uri data = intent.getData();
 
+        //Validate the intent URI for Deep Link app launch
         if (data != null) {
             String filter = data.getQueryParameter(QUESTION_LIST_FILTER_QUERY);
             String questionId = data.getQueryParameter(QUESTION_ID_QUERY);

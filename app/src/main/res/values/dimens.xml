@@ -34,6 +34,7 @@
     <dimen name="question_row_separator_vertical_margin">0dp</dimen>
     <dimen name="question_sub_title_bar_margin">10dp</dimen>
     <dimen name="cornered_search_box_padding">4dp</dimen>
+    <dimen name="question_row_title_width">0dp</dimen>
 
     <!-- ShareScreenDialog -->
     <dimen name="share_screen_button_margin">25dp</dimen>
@@ -55,6 +56,7 @@
     <dimen name="detail_option_width">50dp</dimen>
     <dimen name="detail_option_weight">1</dimen>
     <dimen name="detail_vote_button_margin_vertical">30dp</dimen>
+    <dimen name="detail_vote_button_margin_vertical_bottom">40dp</dimen>
     <dimen name="detail_result_vote_margin_left">33dp</dimen>
 
 </resources>

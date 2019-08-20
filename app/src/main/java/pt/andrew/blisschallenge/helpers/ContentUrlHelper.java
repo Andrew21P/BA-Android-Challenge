@@ -5,6 +5,10 @@ package pt.andrew.blisschallenge.helpers;
  */
 public class ContentUrlHelper {
 
+    /**
+     * Helper for build the custom URL Content parameter in share option
+     */
+
     private static String questionListUrl = "blissrecruitment://questions?";
     private static String questionUrl = "question_id=";
 
