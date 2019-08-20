@@ -41,8 +41,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://quest
  
  - Question detail: 
   ```java
-adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?quest  
-ion_id=1" pt.andrew.blisschallenge
+adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?question_id=1" pt.andrew.blisschallenge
 ```
 
 ## Author:
