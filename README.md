@@ -28,13 +28,22 @@ In Android Studio terminal, copy and paste the following instructions depending 
 
  
 
- - Filter (with content) 
-	 - adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?question_filter=FILTER" pt.andrew.blisschallenge
+ -  Filter (with content) 
+
+```java
+adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?question_filter=FILTER" pt.andrew.blisschallenge
+```
+	 
  - Filter (no content): 
-	 - adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?question_filter=" pt.andrew.blisschallenge
+ ```java
+adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?question_filter=" pt.andrew.blisschallenge
+```
+ 
  - Question detail: 
-	 - adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?quest  
+  ```java
+adb shell am start -W -a android.intent.action.VIEW -d "blissrecruitment://questions?quest  
 ion_id=1" pt.andrew.blisschallenge
+```
 
 ## Author:
 Andrew Fernandes. 
