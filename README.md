@@ -20,7 +20,7 @@ For compile and Run this project, it's mandatory to have Android Studio (last ve
 
  1. Download APK from repository: /app/release/app-release.apk or from https://bit.ly/2HfWQEO
  2. Copy APK to device
- 3. Enable "Unkown Source" install from device Settings -> Security
+ 3. Enable "Unkown Sources" option in device Settings -> Security
  4. Open APK and Install
 
 ## Testing deep links: 
